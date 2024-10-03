@@ -8,6 +8,7 @@ void find_with_table(char* hash, char* output) {
         FILE* file;
         char buffer[1024];
 
+        // 'Smaller Wordlist' from https://crackstation.net/crackstation-wordlist-password-cracking-dictionary.htm
         file = fopen("data/crackstation-human-only.txt", "r");
 
         if (file == NULL) {
