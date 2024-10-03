@@ -4,8 +4,9 @@
 
 #include "hash.h"
 
+char* search(char* hash, int length) {
+    char* output = NULL;
 
-void search(char* hash, int length, char* output) {
     char* t_password = malloc(sizeof(char) * (length + 1));
     char* t_digest = malloc(sizeof(char) * 16);
     char* t_hash = malloc(sizeof(char) * 33);
@@ -27,6 +28,7 @@ void search(char* hash, int length, char* output) {
         md5(t_password, t_digest);
         hexdigest(t_digest, 16, t_hash);
         if (strcmp(t_hash, hash) == 0) {
+            output = malloc(sizeof(char) * 5);
             strcpy(output, t_password);
             break;
         }
@@ -35,13 +37,13 @@ void search(char* hash, int length, char* output) {
     free(t_password);
     free(t_digest);
     free(t_hash);
+    return output;
 }
 
-void brute_force(char* hash, char* output) {
-    for (int i = 0; i <= 4; i++) output[i] = '0';
+char* brute_crack(char* hash) {
     for (int length = 1; length <= 4; length++) {
-        search(hash, length, output);
-        if (output[length] == '\0') return;
+        char* output = search(hash, length);
+        if (output != NULL) return output;
     }
-    printf("Cannot brute force password longer than 4 bytes or with special charachters\n");
+    return NULL;
 }

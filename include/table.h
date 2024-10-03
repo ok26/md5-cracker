@@ -1,3 +1,3 @@
 #pragma once
 
-void find_with_table(char* hash, char* output);
+char* table_crack(char* hash);

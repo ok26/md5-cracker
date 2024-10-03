@@ -1,3 +1,3 @@
 #pragma once
 
-void brute_force(char* hash, char* output);
+char* brute_crack(char* hash);
