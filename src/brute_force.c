@@ -7,8 +7,8 @@
 
 void search(char* hash, int length, char* output) {
     char* t_password = malloc(sizeof(char) * (length + 1));
-    char* t_hash = malloc(sizeof(char) * 16);
-    char* t_hex_hash = malloc(sizeof(char) * 33);
+    char* t_digest = malloc(sizeof(char) * 16);
+    char* t_hash = malloc(sizeof(char) * 33);
 
     t_password[length] = '\0';
     const char *chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -24,17 +24,17 @@ void search(char* hash, int length, char* output) {
             t_password[i] = chars[mask % chars_len];
             mask /= chars_len;
         }
-        md5(t_password, t_hash);
-        hexdigest(t_hash, 16, t_hex_hash);
-        if (strcmp(t_hex_hash, hash) == 0) {
+        md5(t_password, t_digest);
+        hexdigest(t_digest, 16, t_hash);
+        if (strcmp(t_hash, hash) == 0) {
             strcpy(output, t_password);
             break;
         }
     }
 
     free(t_password);
+    free(t_digest);
     free(t_hash);
-    free(t_hex_hash);
 }
 
 void brute_force(char* hash, char* output) {
@@ -43,5 +43,5 @@ void brute_force(char* hash, char* output) {
         search(hash, length, output);
         if (output[length] == '\0') return;
     }
-    printf("Cannot brute force password longer than 4 or with special charachters\n");
+    printf("Cannot brute force password longer than 4 bytes or with special charachters\n");
 }

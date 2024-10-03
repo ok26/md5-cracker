@@ -6,7 +6,7 @@ OBJ_DIR = build
 SRCS = $(wildcard $(SRC_DIR)/*.c)
 OBJS = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRCS))
 
-TARGET = pcracker
+TARGET = pwrack
 
 all: clean $(TARGET)
 
