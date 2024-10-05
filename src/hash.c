@@ -52,10 +52,9 @@ void md5(char* password, char* hash) {
     new_length += 8;
 
     unsigned int chunk = 0;
-    unsigned int* m = malloc(sizeof(unsigned int) * 16);
     while (chunk < new_length / 64) {
         
-        m = (unsigned int*)&padded[chunk * 64];
+        unsigned int* m = (unsigned int*)&padded[chunk * 64];
 
         unsigned int a = a0;
         unsigned int b = b0;
